@@ -1,0 +1,8 @@
+{% capture yield %}
+<script id="data" type="text/javascript">
+  window.entryPoint = "{{current.url}}";
+  window.siteData = {"pages": [{% include 'data' %}]};
+</script>
+{% endcapture %}
+
+{% include 'layout' %}
