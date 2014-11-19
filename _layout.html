@@ -1,0 +1,33 @@
+{% capture html %}<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+  <title>{{ site.title }}</title>
+  <script src="http://fb.me/react-0.12.1.js"></script>
+  <script src="http://fb.me/JSXTransformer-0.12.1.js"></script>
+</head>
+<body>
+  {{ yield }}
+  <div id="content"></div>
+  <script type="text/jsx">
+    var SiteData = React.createClass({
+      render: function() {
+        console.log(window.siteData);
+        return (
+          <div>
+            <h1>Site Data for {{ site.title }}</h1>
+            {JSON.stringify(window.siteData, null, 4)}
+          </div>
+        );
+      }
+    });
+    React.render(
+      <SiteData />,
+      document.getElementById('content')
+    );
+  </script>
+</body>
+</html>
+{% endcapture %}{{ html | strip_newlines}}
